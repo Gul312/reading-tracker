@@ -1,107 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reading Tracker</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
+      background-color: #fdfaf6;
+      padding: 10px;
       margin: 0;
-      padding: 1rem;
-      background: #f8f9fa;
-      color: #333;
     }
-    h1 {
-      text-align: center;
+    .tracker-container {
+      overflow-x: auto;
+      border-radius: 10px;
+      background-color: #fff8ee;
+      padding: 10px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.05);
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 1rem;
+      font-size: 12px;
+      min-width: 680px;
     }
     th, td {
-      border: 1px solid #ccc;
-      padding: 0.5rem;
+      border: 1px solid #e0d5c0;
+      padding: 6px;
       text-align: center;
     }
-    input[type="text"], input[type="number"] {
-      width: 90%;
-      padding: 0.3rem;
-      font-size: 1rem;
+    th {
+      background-color: #f1e5d3;
     }
-    @media (max-width: 600px) {
-      table, thead, tbody, th, td, tr {
-        display: block;
+    input[type="number"] {
+      width: 28px;
+      padding: 4px;
+      font-size: 11px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      text-align: center;
+    }
+    input[type="text"] {
+      width: 80px;
+      padding: 4px;
+      font-size: 11px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    @media (max-width: 480px) {
+      table {
+        font-size: 11px;
+        min-width: unset;
       }
-      th, td {
-        width: 100%;
-        box-sizing: border-box;
+      input[type="number"] {
+        width: 25px;
+        font-size: 10px;
       }
-      tr {
-        margin-bottom: 1rem;
-        border-bottom: 2px solid #ddd;
+      input[type="text"] {
+        width: 70px;
+        font-size: 10px;
       }
     }
   </style>
 </head>
 <body>
-  <h1>📚 Reading Tracker</h1>
-  <p style="text-align:center">Track your daily reading per book</p>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Book Name</th>
-        <th>Day 1</th>
-        <th>Day 2</th>
-        <th>Day 3</th>
-        <th>Day 4</th>
-        <th>Day 5</th>
-        <th>Day 6</th>
-        <th>Day 7</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody id="tableBody"></tbody>
-  </table>
-
-  <script>
-    const tbody = document.getElementById('tableBody');
-    for (let i = 0; i < 10; i++) {
-      const row = document.createElement('tr');
-
-      const nameCell = document.createElement('td');
-      const nameInput = document.createElement('input');
-      nameInput.type = 'text';
-      nameInput.placeholder = 'Book ' + (i + 1);
-      nameCell.appendChild(nameInput);
-      row.appendChild(nameCell);
-
-      let pageInputs = [];
-      for (let j = 0; j < 7; j++) {
-        const cell = document.createElement('td');
-        const input = document.createElement('input');
-        input.type = 'number';
-        input.placeholder = '0';
-        cell.appendChild(input);
-        pageInputs.push(input);
-        row.appendChild(cell);
-      }
-
-      const totalCell = document.createElement('td');
-      totalCell.textContent = '0';
-      row.appendChild(totalCell);
-
-      pageInputs.forEach(input => {
-        input.addEventListener('input', () => {
-          const sum = pageInputs.reduce((acc, inp) => acc + (parseInt(inp.value) || 0), 0);
-          totalCell.textContent = sum;
-        });
-      });
-
-      tbody.appendChild(row);
-    }
-  </script>
+  <div class="tracker-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>Day 1</th>
+          <th>Day 2</th>
+          <th>Day 3</th>
+          <th>Day 4</th>
+          <th>Day 5</th>
+          <th>Day 6</th>
+          <th>Day 7</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" placeholder="Book name" /></td>
+          <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
+          <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
+          <td><input type="number" /></td><td>0</td>
+        </tr>
+        <tr>
+          <td><input type="text" placeholder="Book name" /></td>
+          <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
+          <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
+          <td><input type="number" /></td><td>0</td>
+        </tr>
+        <tr>
+          <td><input type="text" placeholder="Book name" /></td>
+          <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
+          <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
+          <td><input type="number" /></td><td>0</td>
+        </tr>
+        <tr>
+          <td><input type="text" placeholder="Book name" /></td>
+          <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" value="27" /></td>
+          <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
+          <td><input type="number" /></td><td>0</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
