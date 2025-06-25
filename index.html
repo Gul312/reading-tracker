@@ -2,160 +2,121 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reading Tracker</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #fdfaf6;
-      padding: 10px;
+      background-color: #fffaf0;
+      font-family: sans-serif;
       margin: 0;
-    }
-    .tracker-container {
-      overflow-x: auto;
-      border-radius: 10px;
-      background-color: #fff8ee;
       padding: 10px;
-      box-shadow: 0 0 6px rgba(0,0,0,0.05);
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 12px;
-      min-width: 680px;
     }
+
     th, td {
-      border: 1px solid #e0d5c0;
-      padding: 6px;
+      border: 1px solid #f0e5d8;
+      padding: 4px;
       text-align: center;
+      min-width: 35px;
     }
+
     th {
-      background-color: #f1e5d3;
+      background-color: #fdf0dc;
+      position: sticky;
+      top: 0;
+      z-index: 1;
     }
-    input[type="number"] {
-      width: 28px;
-      padding: 4px;
-      font-size: 11px;
+
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 3px;
+      font-size: 12px;
+      box-sizing: border-box;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 5px;
       text-align: center;
     }
-    input[type="text"] {
-      width: 80px;
-      padding: 4px;
-      font-size: 11px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+
+    .btn-container {
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 12px;
     }
-    .footer {
-      text-align: center;
-      margin-top: 20px;
-    }
+
     button {
-      margin: 10px;
-      padding: 6px 12px;
+      padding: 8px 12px;
+      font-size: 14px;
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 12px;
     }
-    .clear-btn {
-      background-color: #e2c4a6;
+
+    .clear {
+      background-color: #deb887;
+      color: #fff;
     }
-    .pdf-btn {
-      background-color: #c4e2cb;
-    }
-    @media (max-width: 480px) {
-      table {
-        font-size: 11px;
-        min-width: unset;
-      }
-      input[type="number"] {
-        width: 25px;
-        font-size: 10px;
-      }
-      input[type="text"] {
-        width: 70px;
-        font-size: 10px;
-      }
+
+    .pdf {
+      background-color: #a9dfbf;
+      color: #000;
     }
   </style>
 </head>
 <body>
-  <div class="tracker-container">
-    <table id="tracker">
-      <thead>
-        <tr>
-          <th>Book</th>
-          <th>Day 1</th>
-          <th>Day 2</th>
-          <th>Day 3</th>
-          <th>Day 4</th>
-          <th>Day 5</th>
-          <th>Day 6</th>
-          <th>Day 7</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" placeholder="Book name" /></td>
-          <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
-          <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
-          <td><input type="number" /></td><td class="total">0</td>
-        </tr>
-        <tr>
-          <td><input type="text" placeholder="Book name" /></td>
-          <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
-          <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
-          <td><input type="number" /></td><td class="total">0</td>
-        </tr>
-        <tr>
-          <td><input type="text" placeholder="Book name" /></td>
-          <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
-          <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
-          <td><input type="number" /></td><td class="total">0</td>
-        </tr>
-        <tr>
-          <td><input type="text" placeholder="Book name" /></td>
-          <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" value="27" /></td>
-          <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
-          <td><input type="number" /></td><td class="total">0</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 
-  <div class="footer">
-    <button onclick="clearAll()" class="clear-btn">Clear All</button>
-    <button onclick="window.print()" class="pdf-btn">Download as PDF</button>
+  <table>
+    <thead>
+      <tr>
+        <th>Book</th>
+        <th>Day 1</th>
+        <th>Day 2</th>
+        <th>Day 3</th>
+        <th>Day 4</th>
+        <th>Day 5</th>
+        <th>Day 6</th>
+        <th>Day 7</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 10 строк -->
+      ${[...Array(10)].map(() => `
+        <tr>
+          <td><input type="text" placeholder="Book name"></td>
+          ${[...Array(7)].map(() => `<td><input type="number" min="0"></td>`).join('')}
+          <td>0</td>
+        </tr>
+      `).join('')}
+    </tbody>
+  </table>
+
+  <div class="btn-container">
+    <button class="clear" onclick="clearAll()">Clear All</button>
+    <button class="pdf">Download as PDF</button>
   </div>
 
   <script>
-    const table = document.getElementById('tracker');
-    table.querySelectorAll('tbody tr').forEach(row => {
+    // Автоподсчет итогов
+    document.querySelectorAll('tbody tr').forEach(row => {
       const inputs = row.querySelectorAll('input[type="number"]');
       inputs.forEach(input => {
         input.addEventListener('input', () => {
-          let total = 0;
-          inputs.forEach(inp => {
-            total += parseInt(inp.value) || 0;
-          });
-          row.querySelector('.total').textContent = total;
+          const total = Array.from(inputs).reduce((sum, i) => sum + (parseInt(i.value) || 0), 0);
+          row.lastElementChild.textContent = total;
         });
       });
     });
 
+    // Очистка всех полей
     function clearAll() {
-      const inputs = document.querySelectorAll('input');
-      inputs.forEach(input => {
-        input.value = '';
-      });
-      const totals = document.querySelectorAll('.total');
-      totals.forEach(total => {
-        total.textContent = '0';
-      });
+      document.querySelectorAll('input').forEach(input => input.value = '');
+      document.querySelectorAll('tbody tr td:last-child').forEach(td => td.textContent = '0');
     }
   </script>
+
 </body>
 </html>
