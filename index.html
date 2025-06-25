@@ -79,6 +79,10 @@
       background-color: #fcbf49;
       color: #000;
     }
+    .save-btn {
+      background-color: #b7e4c7;
+      color: #000;
+    }
     .pdf-btn {
       background-color: #90e0ef;
       color: #000;
@@ -102,18 +106,21 @@
           <th>Total</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="trackerBody">
         <!-- 10 строк -->
-        ${Array.from({ length: 10 }).map(() => `
-          <tr>
-            <td><input type="text" /></td>
-            ${Array.from({ length: 7 }).map(() => `<td><input type="number" value="0" oninput="updateTotal(this)" /></td>`).join('')}
-            <td><input type="number" value="0" readonly /></td>
-          </tr>
-        `).join('')}
+        <script>
+          for (let i = 0; i < 10; i++) {
+            document.write('<tr><td><input type="text"/></td>');
+            for (let j = 0; j < 7; j++) {
+              document.write('<td><input type="number" value="0" oninput="updateTotal(this)"/></td>');
+            }
+            document.write('<td><input type="number" value="0" readonly/></td></tr>');
+          }
+        </script>
       </tbody>
     </table>
     <div class="button-container">
+      <button class="save-btn" onclick="saveData()">💾 Save</button>
       <button class="clear-btn" onclick="clearAll()">Clear All</button>
       <button class="pdf-btn" onclick="downloadPDF()">Download as PDF</button>
     </div>
@@ -131,14 +138,13 @@
         if (!isNaN(val)) sum += val;
       });
       row.querySelector('td input[readonly]').value = sum;
-      saveData();
     }
 
     function clearAll() {
       const inputs = document.querySelectorAll('input');
       inputs.forEach(input => {
         if (input.type === 'text') input.value = '';
-        if (input.type === 'number') input.value = input.hasAttribute('readonly') ? 0 : 0;
+        if (input.type === 'number') input.value = 0;
       });
       localStorage.removeItem(STORAGE_KEY);
     }
@@ -150,6 +156,7 @@
         return Array.from(cells).map(cell => cell.value);
       });
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      alert("✅ Saved!");
     }
 
     function loadData() {
