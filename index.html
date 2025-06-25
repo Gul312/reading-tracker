@@ -47,6 +47,24 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+    button {
+      margin: 10px;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .clear-btn {
+      background-color: #e2c4a6;
+    }
+    .pdf-btn {
+      background-color: #c4e2cb;
+    }
     @media (max-width: 480px) {
       table {
         font-size: 11px;
@@ -65,7 +83,7 @@
 </head>
 <body>
   <div class="tracker-container">
-    <table>
+    <table id="tracker">
       <thead>
         <tr>
           <th>Book</th>
@@ -84,28 +102,60 @@
           <td><input type="text" placeholder="Book name" /></td>
           <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
           <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
-          <td><input type="number" /></td><td>0</td>
+          <td><input type="number" /></td><td class="total">0</td>
         </tr>
         <tr>
           <td><input type="text" placeholder="Book name" /></td>
           <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
           <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
-          <td><input type="number" /></td><td>0</td>
+          <td><input type="number" /></td><td class="total">0</td>
         </tr>
         <tr>
           <td><input type="text" placeholder="Book name" /></td>
           <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
           <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
-          <td><input type="number" /></td><td>0</td>
+          <td><input type="number" /></td><td class="total">0</td>
         </tr>
         <tr>
           <td><input type="text" placeholder="Book name" /></td>
           <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" value="27" /></td>
           <td><input type="number" /></td><td><input type="number" /></td><td><input type="number" /></td>
-          <td><input type="number" /></td><td>0</td>
+          <td><input type="number" /></td><td class="total">0</td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <div class="footer">
+    <button onclick="clearAll()" class="clear-btn">Clear All</button>
+    <button onclick="window.print()" class="pdf-btn">Download as PDF</button>
+  </div>
+
+  <script>
+    const table = document.getElementById('tracker');
+    table.querySelectorAll('tbody tr').forEach(row => {
+      const inputs = row.querySelectorAll('input[type="number"]');
+      inputs.forEach(input => {
+        input.addEventListener('input', () => {
+          let total = 0;
+          inputs.forEach(inp => {
+            total += parseInt(inp.value) || 0;
+          });
+          row.querySelector('.total').textContent = total;
+        });
+      });
+    });
+
+    function clearAll() {
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.value = '';
+      });
+      const totals = document.querySelectorAll('.total');
+      totals.forEach(total => {
+        total.textContent = '0';
+      });
+    }
+  </script>
 </body>
 </html>
