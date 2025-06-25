@@ -24,22 +24,27 @@
     }
 
     table {
-      width: max-content;
       border-collapse: collapse;
       font-size: 10px;
       margin: 0 auto;
+      min-width: 320px;
     }
 
     th, td {
       border: 1px solid #ccc;
       padding: 2px;
       text-align: center;
-      width: 42px;
-      max-width: 42px;
+      width: 40px;
     }
 
-    input[type="text"], input[type="number"] {
-      width: 40px;
+    input[type="text"] {
+      width: 60px;
+      font-size: 10px;
+      padding: 1px;
+    }
+
+    input[type="number"] {
+      width: 36px;
       font-size: 10px;
       padding: 1px;
       text-align: center;
@@ -95,12 +100,31 @@
       </thead>
       <tbody>
         <!-- 10 rows -->
-        <!-- You can duplicate this block for more rows -->
+        <tr>
+          <td><input type="text" /></td>
+          <td><input type="number" value="0" oninput="updateTotal(this)" /></td>
+          <td><input type="number" value="0" oninput="updateTotal(this)" /></td>
+          <td><input type="number" value="0" oninput="updateTotal(this)" /></td>
+          <td><input type="number" value="0" oninput="updateTotal(this)" /></td>
+          <td><input type="number" value="0" oninput="updateTotal(this)" /></td>
+          <td><input type="number" value="0" oninput="updateTotal(this)" /></td>
+          <td><input type="number" value="0" oninput="updateTotal(this)" /></td>
+          <td><input type="number" value="0" readonly /></td>
+        </tr>
+        <!-- Copy above block 9 more times -->
 """ + "\n".join([
-    "<tr><td><input type='text'></td>" +
-    "".join(["<td><input type='number' value='0' oninput='updateTotal(this)'></td>" for _ in range(7)]) +
-    "<td><input type='number' value='0' readonly></td></tr>"
-    for _ in range(10)
+    """<tr>
+          <td><input type="text" /></td>
+          <td><input type="number" value="0" oninput="updateTotal(this)" /></td>
+          <td><input type="number" value="0" oninput="updateTotal(this)" /></td>
+          <td><input type="number" value="0" oninput="updateTotal(this)" /></td>
+          <td><input type="number" value="0" oninput="updateTotal(this)" /></td>
+          <td><input type="number" value="0" oninput="updateTotal(this)" /></td>
+          <td><input type="number" value="0" oninput="updateTotal(this)" /></td>
+          <td><input type="number" value="0" oninput="updateTotal(this)" /></td>
+          <td><input type="number" value="0" readonly /></td>
+        </tr>"""
+    for _ in range(9)
 ]) + """
       </tbody>
     </table>
