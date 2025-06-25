@@ -5,86 +5,135 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Reading Tracker</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #fff8ee; margin: 0; padding: 10px; }
-    table { width: 100%; border-collapse: collapse; display: block; overflow-x: auto; }
-    th, td { border: 1px solid #e0d5c0; padding: 4px; text-align: center; font-size: 12px; }
-    input[type="text"], input[type="number"] { width: 60px; font-size: 12px; padding: 3px; }
-    button { margin-top: 10px; padding: 6px 10px; font-size: 14px; cursor: pointer; border: none; border-radius: 5px; }
-    .btn-clear { background-color: #f3c796; }
-    .btn-pdf { background-color: #88caaa; color: white; margin-left: 10px; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff7ed;
+      padding: 6px;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: max-content;
+      border-collapse: collapse;
+      font-size: 10px;
+      margin: 0 auto;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 2px;
+      text-align: center;
+      width: 42px;
+      max-width: 42px;
+    }
+
+    input[type="text"], input[type="number"] {
+      width: 40px;
+      font-size: 10px;
+      padding: 1px;
+      text-align: center;
+    }
+
+    input[readonly] {
+      background-color: #eee;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 5px 8px;
+      font-size: 11px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .clear-btn {
+      background-color: #fcbf49;
+      color: #000;
+    }
+
+    .pdf-btn {
+      background-color: #90e0ef;
+      color: #000;
+    }
   </style>
 </head>
 <body>
+  <h2>Reading Tracker</h2>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>D1</th>
+          <th>D2</th>
+          <th>D3</th>
+          <th>D4</th>
+          <th>D5</th>
+          <th>D6</th>
+          <th>D7</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 10 rows -->
+        <!-- You can duplicate this block for more rows -->
+""" + "\n".join([
+    "<tr><td><input type='text'></td>" +
+    "".join(["<td><input type='number' value='0' oninput='updateTotal(this)'></td>" for _ in range(7)]) +
+    "<td><input type='number' value='0' readonly></td></tr>"
+    for _ in range(10)
+]) + """
+      </tbody>
+    </table>
+  </div>
 
-<h3 style="margin-bottom:10px;">Reading Tracker</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Book</th>
-      <th>Day 1</th><th>Day 2</th><th>Day 3</th><th>Day 4</th><th>Day 5</th><th>Day 6</th><th>Day 7</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody id="trackerBody"></tbody>
-</table>
+  <div class="button-container">
+    <button class="clear-btn" onclick="clearAll()">Clear All</button>
+    <button class="pdf-btn" onclick="downloadPDF()">Download as PDF</button>
+  </div>
 
-<button class="btn-clear" onclick="clearAll()">Clear All</button>
-<button class="btn-pdf" onclick="downloadPDF()">Download as PDF</button>
-
-<script>
-  const trackerBody = document.getElementById('trackerBody');
-
-  function updateTotals() {
-    trackerBody.querySelectorAll('tr').forEach(row => {
+  <script>
+    function updateTotal(el) {
+      const row = el.closest('tr');
+      const inputs = row.querySelectorAll('td input[type="number"]:not([readonly])');
       let sum = 0;
-      row.querySelectorAll('input[type="number"]').forEach(i => sum += parseInt(i.value) || 0);
-      row.querySelector('span').textContent = sum;
-    });
-  }
-
-  // Генерируем 10 строк
-  for (let i = 0; i < 10; i++) {
-    const row = document.createElement('tr');
-
-    const bookCell = document.createElement('td');
-    const bookInput = document.createElement('input');
-    bookInput.type = 'text';
-    bookInput.placeholder = '';
-    bookCell.appendChild(bookInput);
-    row.appendChild(bookCell);
-
-    for (let j = 0; j < 7; j++) {
-      const dayCell = document.createElement('td');
-      const dayInput = document.createElement('input');
-      dayInput.type = 'number';
-      dayInput.value = 0;
-      dayInput.min = 0;
-      dayInput.addEventListener('input', updateTotals);
-      dayCell.appendChild(dayInput);
-      row.appendChild(dayCell);
+      inputs.forEach(input => {
+        const val = parseInt(input.value);
+        if (!isNaN(val)) sum += val;
+      });
+      row.querySelector('td input[readonly]').value = sum;
     }
 
-    const totalCell = document.createElement('td');
-    const totalSpan = document.createElement('span');
-    totalSpan.textContent = '0';
-    totalCell.appendChild(totalSpan);
-    row.appendChild(totalCell);
+    function clearAll() {
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach(input => {
+        if (input.type === 'text') input.value = '';
+        if (input.type === 'number') input.value = 0;
+      });
+    }
 
-    trackerBody.appendChild(row);
-  }
-
-  function clearAll() {
-    trackerBody.querySelectorAll('input').forEach(i => i.value = '');
-    trackerBody.querySelectorAll('span').forEach(s => s.textContent = '0');
-  }
-
-  function downloadPDF() {
-    alert('PDF download is coming soon! 🚧');
-  }
-
-  // первый расчет
-  updateTotals();
-</script>
-
+    function downloadPDF() {
+      window.print();
+    }
+  </script>
 </body>
 </html>
