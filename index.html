@@ -22,10 +22,6 @@
       text-align: center;
       margin-bottom: 10px;
     }
-    .table-container {
-      width: 100%;
-      overflow-x: auto;
-    }
     table {
       width: 100%;
       table-layout: fixed;
@@ -38,7 +34,6 @@
       text-align: center;
     }
     th {
-      font-weight: bold;
       background-color: #f0e6d6;
     }
     input[type="text"],
@@ -80,41 +75,42 @@
 <body>
   <div class="container">
     <h2>Reading Tracker</h2>
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Book</th>
-            <th>D1</th>
-            <th>D2</th>
-            <th>D3</th>
-            <th>D4</th>
-            <th>D5</th>
-            <th>D6</th>
-            <th>D7</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- 10 manually written rows -->
-          <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" readonly /></td></tr>
-          <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" readonly /></td></tr>
-          <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" readonly /></td></tr>
-          <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" readonly /></td></tr>
-          <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" readonly /></td></tr>
-          <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" readonly /></td></tr>
-          <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" readonly /></td></tr>
-          <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" readonly /></td></tr>
-          <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" readonly /></td></tr>
-          <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" oninput="updateTotal(this)" /></td><td><input type="number" value="0" readonly /></td></tr>
-        </tbody>
-      </table>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>D1</th>
+          <th>D2</th>
+          <th>D3</th>
+          <th>D4</th>
+          <th>D5</th>
+          <th>D6</th>
+          <th>D7</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 10 вручную добавленных строк -->
+        <!-- COPY-PASTE эти блоки столько раз, сколько надо -->
+        <!-- строка 1 -->
+        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
+        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
+        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
+        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
+        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
+        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
+        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
+        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
+        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
+        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
+      </tbody>
+    </table>
     <div class="button-container">
       <button class="clear-btn" onclick="clearAll()">Clear All</button>
       <button class="pdf-btn" onclick="downloadPDF()">Download as PDF</button>
     </div>
   </div>
+
   <script>
     function updateTotal(el) {
       const row = el.closest('tr');
