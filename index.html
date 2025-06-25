@@ -2,30 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reading Tracker</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 1rem;
+      background: #f8f9fa;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    input[type="text"], input[type="number"] {
+      width: 90%;
+      padding: 0.3rem;
+      font-size: 1rem;
+    }
+    @media (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      th, td {
+        width: 100%;
+        box-sizing: border-box;
+      }
+      tr {
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #ddd;
+      }
+    }
+  </style>
 </head>
 <body>
   <h1>📚 Reading Tracker</h1>
-  <p>Write book names and weekly pages below. Total will calculate automatically.</p>
+  <p style="text-align:center">Track your daily reading per book</p>
 
-  <div id="app">
-    <table border="1" style="width:100%; text-align:center;">
-      <thead>
-        <tr>
-          <th>Book Name</th>
-          <th>Week 1</th>
-          <th>Week 2</th>
-          <th>Week 3</th>
-          <th>Week 4</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody">
-        <!-- Rows will be added here -->
-      </tbody>
-    </table>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Book Name</th>
+        <th>Day 1</th>
+        <th>Day 2</th>
+        <th>Day 3</th>
+        <th>Day 4</th>
+        <th>Day 5</th>
+        <th>Day 6</th>
+        <th>Day 7</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
 
   <script>
     const tbody = document.getElementById('tableBody');
@@ -35,31 +74,29 @@
       const nameCell = document.createElement('td');
       const nameInput = document.createElement('input');
       nameInput.type = 'text';
+      nameInput.placeholder = 'Book ' + (i + 1);
       nameCell.appendChild(nameInput);
       row.appendChild(nameCell);
 
-      let totalCell = document.createElement('td');
       let pageInputs = [];
-
-      for (let j = 0; j < 4; j++) {
+      for (let j = 0; j < 7; j++) {
         const cell = document.createElement('td');
         const input = document.createElement('input');
         input.type = 'number';
-        input.value = '';
-        input.style.width = '60px';
+        input.placeholder = '0';
         cell.appendChild(input);
         pageInputs.push(input);
         row.appendChild(cell);
       }
 
-      const total = document.createElement('td');
-      total.innerText = '0';
-      row.appendChild(total);
+      const totalCell = document.createElement('td');
+      totalCell.textContent = '0';
+      row.appendChild(totalCell);
 
       pageInputs.forEach(input => {
         input.addEventListener('input', () => {
           const sum = pageInputs.reduce((acc, inp) => acc + (parseInt(inp.value) || 0), 0);
-          total.innerText = sum;
+          totalCell.textContent = sum;
         });
       });
 
