@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading Tracker</title>
+</head>
+<body>
+  <h1>📚 Reading Tracker</h1>
+  <p>Write book names and weekly pages below. Total will calculate automatically.</p>
+
+  <div id="app">
+    <table border="1" style="width:100%; text-align:center;">
+      <thead>
+        <tr>
+          <th>Book Name</th>
+          <th>Week 1</th>
+          <th>Week 2</th>
+          <th>Week 3</th>
+          <th>Week 4</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <!-- Rows will be added here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const tbody = document.getElementById('tableBody');
+    for (let i = 0; i < 10; i++) {
+      const row = document.createElement('tr');
+
+      const nameCell = document.createElement('td');
+      const nameInput = document.createElement('input');
+      nameInput.type = 'text';
+      nameCell.appendChild(nameInput);
+      row.appendChild(nameCell);
+
+      let totalCell = document.createElement('td');
+      let pageInputs = [];
+
+      for (let j = 0; j < 4; j++) {
+        const cell = document.createElement('td');
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.value = '';
+        input.style.width = '60px';
+        cell.appendChild(input);
+        pageInputs.push(input);
+        row.appendChild(cell);
+      }
+
+      const total = document.createElement('td');
+      total.innerText = '0';
+      row.appendChild(total);
+
+      pageInputs.forEach(input => {
+        input.addEventListener('input', () => {
+          const sum = pageInputs.reduce((acc, inp) => acc + (parseInt(inp.value) || 0), 0);
+          total.innerText = sum;
+        });
+      });
+
+      tbody.appendChild(row);
+    }
+  </script>
+</body>
+</html>
