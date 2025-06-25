@@ -1,122 +1,114 @@
+from IPython.display import display, HTML
+
+# HTML and CSS code for mobile-friendly Reading Tracker
+html_code = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Reading Tracker</title>
-  <style>
-    body {
-      background-color: #fffaf0;
-      font-family: sans-serif;
-      margin: 0;
-      padding: 10px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12px;
-    }
-
-    th, td {
-      border: 1px solid #f0e5d8;
-      padding: 4px;
-      text-align: center;
-      min-width: 35px;
-    }
-
-    th {
-      background-color: #fdf0dc;
-      position: sticky;
-      top: 0;
-      z-index: 1;
-    }
-
-    input[type="text"], input[type="number"] {
-      width: 100%;
-      padding: 3px;
-      font-size: 12px;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      text-align: center;
-    }
-
-    .btn-container {
-      display: flex;
-      justify-content: space-evenly;
-      margin-top: 12px;
-    }
-
-    button {
-      padding: 8px 12px;
-      font-size: 14px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .clear {
-      background-color: #deb887;
-      color: #fff;
-    }
-
-    .pdf {
-      background-color: #a9dfbf;
-      color: #000;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading Tracker</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fff8ee;
+    margin: 0;
+    padding: 1em;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+    display: block;
+  }
+  th, td {
+    border: 1px solid #e0d5c0;
+    padding: 6px;
+    text-align: center;
+    font-size: 14px;
+  }
+  input[type="text"], input[type="number"] {
+    width: 80px;
+    padding: 4px;
+    font-size: 14px;
+  }
+  button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+  .clear-btn {
+    background-color: #f5c097;
+    color: #000;
+  }
+  .pdf-btn {
+    background-color: #7ec89c;
+    color: #fff;
+  }
+</style>
 </head>
 <body>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Book</th>
-        <th>Day 1</th>
-        <th>Day 2</th>
-        <th>Day 3</th>
-        <th>Day 4</th>
-        <th>Day 5</th>
-        <th>Day 6</th>
-        <th>Day 7</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- 10 строк -->
-      ${[...Array(10)].map(() => `
-        <tr>
-          <td><input type="text" placeholder="Book name"></td>
-          ${[...Array(7)].map(() => `<td><input type="number" min="0"></td>`).join('')}
-          <td>0</td>
-        </tr>
-      `).join('')}
-    </tbody>
-  </table>
+<h2>Reading Tracker</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Book</th>
+      <th>Day 1</th>
+      <th>Day 2</th>
+      <th>Day 3</th>
+      <th>Day 4</th>
+      <th>Day 5</th>
+      <th>Day 6</th>
+      <th>Day 7</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody id="trackerBody">
+    <tr>
+      <td><input type="text" placeholder="Book name"></td>
+      <td><input type="number" value="0"></td>
+      <td><input type="number" value="0"></td>
+      <td><input type="number" value="0"></td>
+      <td><input type="number" value="0"></td>
+      <td><input type="number" value="0"></td>
+      <td><input type="number" value="0"></td>
+      <td><input type="number" value="0"></td>
+      <td><span>0</span></td>
+    </tr>
+  </tbody>
+</table>
 
-  <div class="btn-container">
-    <button class="clear" onclick="clearAll()">Clear All</button>
-    <button class="pdf">Download as PDF</button>
-  </div>
+<button class="clear-btn" onclick="clearAll()">Clear All</button>
+<button class="pdf-btn" onclick="downloadPDF()">Download as PDF</button>
 
-  <script>
-    // Автоподсчет итогов
-    document.querySelectorAll('tbody tr').forEach(row => {
-      const inputs = row.querySelectorAll('input[type="number"]');
-      inputs.forEach(input => {
-        input.addEventListener('input', () => {
-          const total = Array.from(inputs).reduce((sum, i) => sum + (parseInt(i.value) || 0), 0);
-          row.lastElementChild.textContent = total;
-        });
-      });
-    });
+<script>
+function clearAll() {
+  document.querySelectorAll('input[type="text"], input[type="number"]').forEach(input => input.value = '');
+  document.querySelectorAll('tbody span').forEach(span => span.textContent = '0');
+}
 
-    // Очистка всех полей
-    function clearAll() {
-      document.querySelectorAll('input').forEach(input => input.value = '');
-      document.querySelectorAll('tbody tr td:last-child').forEach(td => td.textContent = '0');
-    }
-  </script>
+document.querySelectorAll('input[type="number"]').forEach(input => {
+  input.addEventListener('input', () => {
+    const row = input.closest('tr');
+    const inputs = row.querySelectorAll('input[type="number"]');
+    let sum = 0;
+    inputs.forEach(i => sum += Number(i.value) || 0);
+    row.querySelector('span').textContent = sum;
+  });
+});
+
+function downloadPDF() {
+  alert("PDF download feature will be added soon!");
+}
+</script>
 
 </body>
 </html>
+"""
+
+# Display as preview here
+display(HTML(html_code))
