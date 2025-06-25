@@ -2,20 +2,21 @@
 <html lang="en">
 <head>
   <!-- PWA Setup -->
-<link rel="manifest" href="manifest.json" />
-<link rel="icon" href="icon-192.png" />
-<meta name="theme-color" content="#fff7ed" />
-
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(() => console.log("✅ Service Worker Registered"))
-      .catch((error) => console.error("❌ Service Worker Error:", error));
-  }
-</script>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon-192.png" />
+  <meta name="theme-color" content="#fff7ed" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Reading Tracker</title>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log("✅ Service Worker Registered"))
+        .catch((error) => console.error("❌ Service Worker Error:", error));
+    }
+  </script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -102,19 +103,14 @@
         </tr>
       </thead>
       <tbody>
-        <!-- 10 вручную добавленных строк -->
-        <!-- COPY-PASTE эти блоки столько раз, сколько надо -->
-        <!-- строка 1 -->
-        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
-        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
-        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
-        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
-        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
-        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
-        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
-        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
-        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
-        <tr><td><input type="text" /></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" oninput="updateTotal(this)"/></td><td><input type="number" value="0" readonly/></td></tr>
+        <!-- 10 строк -->
+        ${Array.from({ length: 10 }).map(() => `
+          <tr>
+            <td><input type="text" /></td>
+            ${Array.from({ length: 7 }).map(() => `<td><input type="number" value="0" oninput="updateTotal(this)" /></td>`).join('')}
+            <td><input type="number" value="0" readonly /></td>
+          </tr>
+        `).join('')}
       </tbody>
     </table>
     <div class="button-container">
@@ -124,6 +120,8 @@
   </div>
 
   <script>
+    const STORAGE_KEY = 'readingTrackerData';
+
     function updateTotal(el) {
       const row = el.closest('tr');
       const inputs = row.querySelectorAll('td input[type="number"]:not([readonly])');
@@ -133,73 +131,52 @@
         if (!isNaN(val)) sum += val;
       });
       row.querySelector('td input[readonly]').value = sum;
+      saveData();
     }
-    function clearAll() { 
-      <script>
-  const STORAGE_KEY = 'readingTrackerData';
 
-  function updateTotal(el) {
-    const row = el.closest('tr');
-    const inputs = row.querySelectorAll('td input[type="number"]:not([readonly])');
-    let sum = 0;
-    inputs.forEach(input => {
-      const val = parseInt(input.value);
-      if (!isNaN(val)) sum += val;
-    });
-    row.querySelector('td input[readonly]').value = sum;
-    saveData(); // сохраняем при каждом изменении
-  }
-
-  function clearAll() {
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(input => {
-      if (input.type === 'text') input.value = '';
-      if (input.type === 'number') input.value = input.hasAttribute('readonly') ? 0 : 0;
-    });
-    localStorage.removeItem(STORAGE_KEY); // очищаем хранилище
-  }
-
-  function saveData() {
-    const rows = document.querySelectorAll('tbody tr');
-    const data = Array.from(rows).map(row => {
-      const cells = row.querySelectorAll('input');
-      return Array.from(cells).map(cell => cell.value);
-    });
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  }
-
-  function loadData() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (!saved) return;
-    const data = JSON.parse(saved);
-    const rows = document.querySelectorAll('tbody tr');
-    data.forEach((rowData, i) => {
-      if (rows[i]) {
-        const inputs = rows[i].querySelectorAll('input');
-        rowData.forEach((value, j) => {
-          if (inputs[j]) {
-            inputs[j].value = value;
-            if (inputs[j].type === 'number' && !inputs[j].hasAttribute('readonly')) {
-              updateTotal(inputs[j]); // пересчитать total
-            }
-          }
-        });
-      }
-    });
-  }
-
-  window.addEventListener('DOMContentLoaded', loadData);
-</script>
-
+    function clearAll() {
       const inputs = document.querySelectorAll('input');
       inputs.forEach(input => {
         if (input.type === 'text') input.value = '';
-        if (input.type === 'number') input.value = 0;
+        if (input.type === 'number') input.value = input.hasAttribute('readonly') ? 0 : 0;
+      });
+      localStorage.removeItem(STORAGE_KEY);
+    }
+
+    function saveData() {
+      const rows = document.querySelectorAll('tbody tr');
+      const data = Array.from(rows).map(row => {
+        const cells = row.querySelectorAll('input');
+        return Array.from(cells).map(cell => cell.value);
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function loadData() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) return;
+      const data = JSON.parse(saved);
+      const rows = document.querySelectorAll('tbody tr');
+      data.forEach((rowData, i) => {
+        if (rows[i]) {
+          const inputs = rows[i].querySelectorAll('input');
+          rowData.forEach((value, j) => {
+            if (inputs[j]) {
+              inputs[j].value = value;
+              if (inputs[j].type === 'number' && !inputs[j].hasAttribute('readonly')) {
+                updateTotal(inputs[j]);
+              }
+            }
+          });
+        }
       });
     }
+
     function downloadPDF() {
       window.print();
     }
+
+    window.addEventListener('DOMContentLoaded', loadData);
   </script>
 </body>
 </html>
